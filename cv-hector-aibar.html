@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Héctor Aibar Gómez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            opacity: 0.95;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item:hover {
+            opacity: 1;
+        }
+
+        .contact-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            fill: currentColor;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 0;
+        }
+
+        .left-column {
+            padding: 40px;
+        }
+
+        .right-column {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-left: 1px solid #e9ecef;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .profile-text {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #555;
+            text-align: justify;
+        }
+
+        .job {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #3498db;
+            border-radius: 50%;
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .company-info {
+            color: #7f8c8d;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .job-description {
+            margin-left: 0;
+        }
+
+        .job-description li {
+            margin-bottom: 8px;
+            color: #555;
+            line-height: 1.6;
+            list-style: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .job-description li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .education-item, .project-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-item:hover, .project-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .education-title, .project-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .education-info, .project-info {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .skills-category {
+            margin-bottom: 25px;
+        }
+
+        .skills-category h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .skill-level {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .language-level {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .aptitudes-list {
+            list-style: none;
+        }
+
+        .aptitudes-list li {
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .aptitudes-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: none;
+            }
+            
+            .header::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .left-column, .right-column {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Héctor Aibar Gómez</h1>
+                <p class="title">Ingeniero Informático - Software Development | Mobile Developer</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        hector.aibar@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        +34 644 977 014
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Valencia, España
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        github.com/Enfadaditto
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="left-column">
+                <section class="section">
+                    <h2 class="section-title">Perfil Profesional</h2>
+                    <p class="profile-text">
+                        Ingeniero Informático especializado en Ingeniería de Software con experiencia en desarrollo full-stack para entornos web y móvil. Dominio de tecnologías como Angular, TypeScript, Java, MongoDB y Docker. Profesional adaptable con fuerte capacidad de aprendizaje y entusiasmo por trabajar en equipo, actualmente explorando DevOps e Inteligencia Artificial.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Experiencia Laboral</h2>
+                    <div class="job">
+                        <h3 class="job-title">Desarrollador de Software Full-Stack</h3>
+                        <p class="company-info">Fourvenues | Valencia | Feb 2024 - Actualidad</p>
+                        <ul class="job-description">
+                            <li>Desarrollo frontend: Creación de interfaces de usuario responsivas utilizando Angular, TypeScript y Tailwind CSS, garantizando una experiencia de usuario óptima en diferentes dispositivos</li>
+                            <li>Desarrollo backend: Implementación de APIs y servicios utilizando Express.js, MongoDB y RedisMQ para el manejo eficiente de datos y colas de mensajes</li>
+                            <li>Desarrollo móvil: Desarrollo de aplicaciones móviles utilizando Java y Realm como base de datos local, asegurando rendimiento y sincronización de datos</li>
+                            <li>DevOps y despliegue: Gestión de contenedores con Docker y control de versiones con GitLab, participando en el ciclo completo de desarrollo y despliegue</li>
+                            <li>Colaboración multifuncional: Trabajo en equipos multidisciplinarios alternando entre roles de frontend, backend y mobile según las necesidades del proyecto</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Formación Académica</h2>
+                    <div class="education-item">
+                        <h3 class="education-title">Grado en Ingeniería Informática</h3>
+                        <p class="education-info">Universitat Politècnica de València (UPV) | Valencia | 2020 - 2024</p>
+                        <ul style="margin-top: 10px; color: #666;">
+                            <li>• Especialización en Ingeniería de Software</li>
+                            <li>• Nota media: 7,1</li>
+                            <li>• Formación técnica integral en desarrollo de software, arquitecturas de sistemas y metodologías de desarrollo</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Proyectos Destacados</h2>
+                    <div class="project-item">
+                        <h3 class="project-title">Fusion Box</h3>
+                        <p class="project-info">Proyecto Personal | 2024</p>
+                        <ul style="margin-top: 10px; color: #666;">
+                            <li>• Aplicación móvil Flutter para visualización y exploración de fusiones de Pokémon</li>
+                            <li>• Generación de matrices que muestran todas las combinaciones posibles de fusión</li>
+                            <li>• Extracción directa con archivos del juego para obtener sprites y datos</li>
+                            <li>• Tecnologías: Flutter, Dart</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-title">SlumdogSustainable</h3>
+                        <p class="project-info">Proyecto Académico - 3er Curso | 2023</p>
+                        <ul style="margin-top: 10px; color: #666;">
+                            <li>• Aplicación Android desarrollada en Java utilizando Android Studio</li>
+                            <li>• Implementación de base de datos MySQL con framework ORMLite</li>
+                            <li>• Tecnologías: Java, Android Studio, MySQL, ORMLite</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section class="section">
+                    <h2 class="section-title">Habilidades Técnicas</h2>
+                    
+                    <div class="skills-category">
+                        <h4>Lenguajes de Programación</h4>
+                        <div class="skill-item">
+                            <span>Java</span>
+                            <span class="skill-level">Avanzado</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>TypeScript/JavaScript</span>
+                            <span class="skill-level">Avanzado</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Dart</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>SQL</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h4>Frameworks y Librerías</h4>
+                        <div class="skill-item">
+                            <span>Angular</span>
+                            <span class="skill-level">Avanzado</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Flutter</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Express.js</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Tailwind CSS</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h4>Bases de Datos</h4>
+                        <div class="skill-item">
+                            <span>MongoDB</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>MySQL</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Realm</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h4>Herramientas</h4>
+                        <div class="skill-item">
+                            <span>Docker</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>GitLab</span>
+                            <span class="skill-level">Intermedio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Android Studio</span>
+                            <span class="skill-level">Avanzado</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Idiomas</h2>
+                    <div class="language-item">
+                        <span class="language-name">Castellano</span>
+                        <span class="language-level">Nativo</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Valenciano/Catalán</span>
+                        <span class="language-level">Nativo</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Inglés</span>
+                        <span class="language-level">B2</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Francés</span>
+                        <span class="language-level">B1</span>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Aptitudes</h2>
+                    <ul class="aptitudes-list">
+                        <li>Adaptabilidad y aprendizaje continuo</li>
+                        <li>Iniciativa y toma de decisiones</li>
+                        <li>Trabajo en equipo colaborativo</li>
+                        <li>Interés en DevOps e IA</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
